@@ -35,8 +35,9 @@ public class StudentRepository implements IStudentRepository {
 
 	@Override
 	public void updateStudent(Student student) {
-		// TODO Auto-generated method stub
-
+		jdbcTemplate.update("update student set id=:id,first_name=:firstName,last_name=:lastName,course=:course)"+
+				  "where id=:id)", 
+				  new MapSqlParameterSource("id",student.getId()).addValue("firstName",student.getFirstName()).addValue("lastName", student.getLastName()).addValue("course", student.getCourse()));
 	}
 
 	@Override

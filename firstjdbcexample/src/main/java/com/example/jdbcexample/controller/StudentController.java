@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,5 +41,9 @@ public class StudentController {
 		return stuRepo.getStudentById(id);
 	}
 
+	@PutMapping(path="/updatestudent",consumes="application/json")
+	public void updateStudent(@RequestBody Student student) {
+		stuRepo.updateStudent(student);
+	}
 }
 
