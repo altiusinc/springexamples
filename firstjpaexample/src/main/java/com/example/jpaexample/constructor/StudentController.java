@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class StudentController {
 	Student student;
 	@Autowired
 	IStudentRepository stuRepo;
-	
+	@Transactional
 	@PostMapping(path="/", consumes= "application/json")
 	@ResponseBody
 	public Student createStudent(@RequestBody Student student)
@@ -48,7 +49,7 @@ public class StudentController {
 		  
 		return resVal;
 	}
-
+    @Transactional
 	@PutMapping(path="/{id}",consumes="application/json")
 	@ResponseBody
 	public Student updateStudent(@PathVariable(value="id") String id, @Valid @RequestBody Student student) {
@@ -58,7 +59,7 @@ public class StudentController {
 		recToModify.setCourse(student.getCourse());
 		return stuRepo.save(recToModify);
 	}
-	
+	@Transactional
 	@DeleteMapping(path="/{id}")
 	@ResponseBody()
 	public String deleteStudent(@PathVariable(value="id") String id) {
