@@ -32,11 +32,18 @@ public class RulesenginesampleConfig {
 	  }
 	  
 	
-	  @Bean public IRule getIRule() { IRule instance; final EngineFactory<IRule>
-	  engineFactory = new RulesEngineFactory<IRule>(getClass().getClassLoader()
-	  .getResource("HelloUser.xls"), IRule.class); instance =
-	  engineFactory.newEngineInstance(); if(instance==null) {
-	  System.out.println("Instance is Null"); return null; } return instance; }
+	@Bean
+	public IRule getIRule() {
+		IRule instance;
+		final EngineFactory<IRule> engineFactory = new RulesEngineFactory<IRule>(
+				getClass().getClassLoader().getResource("HelloUser.xls"), IRule.class);
+		instance = engineFactory.newEngineInstance();
+		if (instance == null) {
+			System.out.println("Instance is Null");
+			return null;
+		}
+		return instance;
+	}
 	 
 
 }
